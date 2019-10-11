@@ -1,0 +1,76 @@
+import os
+from dotenv import load_dotenv
+import vk_api
+import requests
+import telegram
+import argparse
+
+
+def post_telegram(image_path, text_path):
+    with open(text_path, 'rt') as file:
+        text = file.read()
+    chat_id = os.getenv('CHAT_ID_TELEGRAM')
+    token = os.getenv('TELEGRAM_TOKEN')
+    bot = telegram.Bot(token=token)
+    bot.send_message(chat_id=chat_id, text=text)
+    bot.send_photo(chat_id=chat_id, photo=open(image_path, 'rb'))
+
+
+def post_facebook(image_path, text_path):
+    with open(text_path, 'rt') as file:
+        text = file.read()
+    group_id = os.getenv('GROUP_ID_FB')
+    facebook_token = os.getenv('FACEBOOK_TOKEN')
+    upload_url = f'https://graph.facebook.com/{group_id}/photos'
+    params_upload = {
+        "caption": text,
+        'access_token': facebook_token
+    }
+    with open(image_path, 'rb') as file:
+        files = {
+            'photo': file,
+        }
+        response = requests.post(upload_url, files=files, params=params_upload)
+
+
+def post_vkontakte(image_path, text_path):
+    with open(text_path, 'rt') as file:
+        text = file.read()
+    access_vk_token = os.getenv('ACCESS_VK_TOKEN')
+    group_id = int(os.getenv('GROUP_ID_VK'))
+    album_id = os.getenv('ALBUM_ID_VK')
+    vk_session = vk_api.VkApi(login=None, password=None, token=access_vk_token)
+    vk = vk_session.get_api()
+    upload = vk_api.VkUpload(vk_session)
+
+    photo = upload.photo(
+        image_path,
+        album_id=album_id,
+        group_id=group_id
+    )
+    vk_photo = f"photo{photo[0]['owner_id']}_{photo[0]['id']}"
+    vk.wall.post(owner_id=f'-{group_id}', message=text, attachments=vk_photo)
+
+
+def create_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('image_path', help='Ваш путь до файла')
+    parser.add_argument('text_path', help='Ваш путь до текста')
+    return parser
+
+
+def main():
+    load_dotenv()
+    parser = create_parser()
+    image_path = parser.parse_args().image_path
+    text_path = parser.parse_args().text_path
+    post_vkontakte(image_path, text_path)
+    post_telegram(image_path, text_path)
+    post_facebook(image_path, text_path)
+
+
+if __name__ == '__main__':
+    main()
+
+
+
