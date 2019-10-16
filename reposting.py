@@ -30,7 +30,11 @@ def post_facebook(image_path, text_path):
         files = {
             'photo': file,
         }
-        response = requests.post(upload_url, files=files, params=params_upload)
+        try:
+            response = requests.post(upload_url, files=files, params=params_upload)
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as error:
+            print(error.response.json()['error']['error_user_msg'])
 
 
 def post_vkontakte(image_path, text_path):
@@ -42,7 +46,6 @@ def post_vkontakte(image_path, text_path):
     vk_session = vk_api.VkApi(login=None, password=None, token=access_vk_token)
     vk = vk_session.get_api()
     upload = vk_api.VkUpload(vk_session)
-
     photo = upload.photo(
         image_path,
         album_id=album_id,
@@ -70,6 +73,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
