@@ -62,11 +62,10 @@ def create_parser():
 def main():
     load_dotenv()
     parser = create_parser()
-    image_path = parser.parse_args().image_path
-    text_path = parser.parse_args().text_path
-    post_vkontakte(image_path, text_path)
-    post_telegram(image_path, text_path)
-    post_facebook(image_path, text_path)
+    args = parser.parse_args()
+    post_vkontakte(args.image_path, args.text_path)
+    post_telegram(args.image_path, args.text_path)
+    post_facebook(args.image_path, args.text_path)
 
 
 if __name__ == '__main__':
