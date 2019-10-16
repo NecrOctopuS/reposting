@@ -53,9 +53,9 @@ def post_vkontakte(image_path, text_path):
 
 
 def create_parser():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('image_path', help='Ваш путь до файла')
-    parser.add_argument('text_path', help='Ваш путь до текста')
+    parser = argparse.ArgumentParser(description='Публикация постов в Вконтакте, Фейсбук и Телеграм')
+    parser.add_argument('image_path', help='путь до файла')
+    parser.add_argument('text_path', help='путь до текста')
     return parser
 
 
