@@ -30,11 +30,8 @@ def post_facebook(image_path, text_path):
         files = {
             'photo': file,
         }
-        try:
-            response = requests.post(upload_url, files=files, params=params_upload)
-            response.raise_for_status()
-        except requests.exceptions.HTTPError as error:
-            print(error.response.json()['error']['error_user_msg'])
+        response = requests.post(upload_url, files=files, params=params_upload)
+        response.raise_for_status()
 
 
 def post_vkontakte(image_path, text_path):
@@ -69,6 +66,10 @@ def main():
     post_vkontakte(args.image_path, args.text_path)
     post_telegram(args.image_path, args.text_path)
     post_facebook(args.image_path, args.text_path)
+    try:
+        post_facebook(args.image_path, args.text_path)
+    except requests.exceptions.HTTPError as error:
+        print(error.response.json()['error']['error_user_msg'])
 
 
 if __name__ == '__main__':
