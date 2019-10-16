@@ -9,7 +9,7 @@ The program publishes a post (picture and text) in three social networks:
 To get started, get a token from VK, it can be obtained as follows:
 
 You must follow the link: https://oauth.vk.com/authorize?client_id=`Your_ID_client`&scope=photos,groups,wall,offline&response_type=token
-where `Your_ID_ID` is the application ID that can be viewed in the settings of your [application] (https://vk.com/apps?act=manage)
+where `Your_ID_ID` is the application ID that can be viewed in the settings of your [application](https://vk.com/apps?act=manage)
 
 Next, you need to get a token from Telegram, you get it automatically by creating a bot.
 
@@ -36,11 +36,11 @@ pip install -r requirements.txt
 
 ### Objective of the project
 
-The code is written for educational purposes on the online course for web developers [dvmn.org] (https://dvmn.org/).
+The code is written for educational purposes on the online course for web developers [dvmn.org](https://dvmn.org/).
 
 ### How to start
 
 The full path to the image and the full path to the text file with the post text are fed to the input
 ```
-py reposting.py d: \ images \ image.jpg d: \ text \ text.txt
+py reposting.py d:\images\image.jpg d:\text\text.txt
 ```
