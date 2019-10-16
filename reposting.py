@@ -9,7 +9,7 @@ import argparse
 def post_telegram(image_path, text_path):
     with open(text_path, 'rt') as file:
         text = file.read()
-    chat_id = os.getenv('CHAT_ID_TELEGRAM')
+    chat_id = os.getenv('TELEGRAM_CHAT_ID')
     token = os.getenv('TELEGRAM_TOKEN')
     bot = telegram.Bot(token=token)
     bot.send_message(chat_id=chat_id, text=text)
@@ -19,7 +19,7 @@ def post_telegram(image_path, text_path):
 def post_facebook(image_path, text_path):
     with open(text_path, 'rt') as file:
         text = file.read()
-    group_id = os.getenv('GROUP_ID_FB')
+    group_id = os.getenv('FB_GROUP_ID')
     facebook_token = os.getenv('FACEBOOK_TOKEN')
     upload_url = f'https://graph.facebook.com/{group_id}/photos'
     params_upload = {
@@ -36,9 +36,9 @@ def post_facebook(image_path, text_path):
 def post_vkontakte(image_path, text_path):
     with open(text_path, 'rt') as file:
         text = file.read()
-    access_vk_token = os.getenv('ACCESS_VK_TOKEN')
-    group_id = int(os.getenv('GROUP_ID_VK'))
-    album_id = os.getenv('ALBUM_ID_VK')
+    access_vk_token = os.getenv('VK_ACCESS_TOKEN')
+    group_id = int(os.getenv('VK_GROUP_ID'))
+    album_id = os.getenv('VK_ALBUM_ID')
     vk_session = vk_api.VkApi(login=None, password=None, token=access_vk_token)
     vk = vk_session.get_api()
     upload = vk_api.VkUpload(vk_session)

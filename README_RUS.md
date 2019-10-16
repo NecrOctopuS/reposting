@@ -17,13 +17,13 @@
  
 В файл `.env` необходимо записать следующие данные:
 ```text
-ACCESS_VK_TOKEN="Ваш ключ от Вконтакте"
-CLIENT_ID_VK='Ваш ID приложения Вконтакте'
-GROUP_ID_VK='ID вашей группы Вконтакте'
-ALBUM_ID_VK='ID вашего альбома Вконтакте'
+VK_ACCESS_TOKEN="Ваш ключ от Вконтакте"
+VK_CLIENT_ID='Ваш ID приложения Вконтакте'
+VK_GROUP_ID='ID вашей группы Вконтакте'
+VK_ALBUM_ID='ID вашего альбома Вконтакте'
 TELEGRAM_TOKEN='Ваш ключ от Телеграм'
-CHAT_ID_TELEGRAM='Ваш ID канала Телеграм'
-GROUP_ID_FB='ID вашей группы Фейсбук'
+TELEGRAM_CHAT_ID='Ваш ID канала Телеграм'
+FB_GROUP_ID='ID вашей группы Фейсбук'
 FACEBOOK_TOKEN='Ваш ключ от Фейсбук'
 ```
 

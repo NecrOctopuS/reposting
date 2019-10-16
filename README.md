@@ -17,13 +17,13 @@ You also need a key (access token) with the right to `publish_to_groups` from Fa
  
 The following data must be written to the `.env` file:
 ```text
-ACCESS_VK_TOKEN = "Your key to Vkontakte"
-CLIENT_ID_VK = 'Your Vkontakte Application ID'
-GROUP_ID_VK = 'ID of your VKontakte group'
-ALBUM_ID_VK = 'ID of your Vkontakte album'
+VK_ACCESS_TOKEN = "Your key to Vkontakte"
+VK_CLIENT_ID = 'Your Vkontakte Application ID'
+VK_GROUP_ID = 'ID of your VKontakte group'
+VK_ALBUM_ID = 'ID of your Vkontakte album'
 TELEGRAM_TOKEN = 'Your Telegram Key'
-CHAT_ID_TELEGRAM = 'Your Telegram Channel ID'
-GROUP_ID_FB = 'Your Facebook Group ID'
+TELEGRAM_CHAT_ID = 'Your Telegram Channel ID'
+FB_GROUP_ID = 'Your Facebook Group ID'
 FACEBOOK_TOKEN = 'Your Facebook Key'
 ```
 
